@@ -1,0 +1,32 @@
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.bg-gradient-info {
+    background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #f46b45 0%, #eea849 100%);
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+}

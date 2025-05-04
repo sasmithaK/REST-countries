@@ -1,0 +1,59 @@
+.country-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  }
+  
+  .country-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+  }
+  
+  .flag-image {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    color: #495057;
+  }
+  
+  .icon-style {
+    color: #0d6efd;
+    font-size: 1.1rem;
+  }
+  
+  .country-btn {
+    transition: background-color 0.3s ease, border 0.3s ease;
+    border-radius: 0.5rem;
+  }
+  
+  .country-btn:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+  }
+
+.icon-style {
+  color: #000;
+  font-size: 1.1rem;
+}
+
+/* Base button: black background, white text */
+.country-btn {
+  background-color: #000;
+  border-color: #000;
+  color: #fff;
+  transition: background-color 0.3s ease, border 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+/* Hover state: slightly lighter black/gray */
+.country-btn:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+}
