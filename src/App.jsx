@@ -1,25 +1,19 @@
+// src/App.jsx
 import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import useCountries from "./hooks/useCountries";
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
 import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import CountryList from "./components/CountryList";
+import CountryDetails from "./components/CountryDetails";
+import useCountries from "./hooks/useCountries";
 
-export default function App() {
-  const [search, setSearch] = useState("");
-  const [region, setRegion] = useState("");
-  const [language, setLanguage] = useState("");
-
-  // useCountries hook to fetch and filter countries
-  const countries = useCountries(search, region, language);
-
+function Home({ search, setSearch, region, setRegion, language, setLanguage, countries }) {
   return (
-    <div className="bg-light" style={{ minHeight: "100vh", padding: "2rem" }}>
-      <header className="bg-primary text-white text-center rounded p-4 mb-4">
-        <h1 className="display-5 fw-bold">Explore Countries Explorer</h1>
-      </header>
-
+    <main className="container bg-light bg-opacity-75 p-4 rounded shadow-sm">
       <div className="row align-items-center mb-4">
         <div className="col-md-6 mb-3 mb-md-0">
           <SearchBar value={search} onChange={setSearch} />
@@ -33,8 +27,42 @@ export default function App() {
           />
         </div>
       </div>
-
       <CountryList countries={countries} />
+    </main>
+  );
+}
+
+export default function App() {
+  const [search, setSearch] = useState("");
+  const [region, setRegion] = useState("");
+  const [language, setLanguage] = useState("");
+  const countries = useCountries(search, region, language);
+
+  return (
+    <div style={{ position: "relative", zIndex: 1 }}>
+      <NavBar />
+      <Hero />
+
+      <Routes>
+        {/* Home/List view */}
+        <Route
+          path="/"
+          element={
+            <Home
+              search={search}
+              setSearch={setSearch}
+              region={region}
+              setRegion={setRegion}
+              language={language}
+              setLanguage={setLanguage}
+              countries={countries}
+            />
+          }
+        />
+
+        {/* Country details view */}
+        <Route path="/country/:code" element={<CountryDetails />} />
+      </Routes>
     </div>
   );
 }
