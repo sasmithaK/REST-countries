@@ -25,29 +25,41 @@ export default function App() {
 
   // filters & search
   useEffect(() => {
-    let subset = all;
-
-    if (debouncedSearch) {
-      fetchByName(debouncedSearch)
-        .then(data => setCountries(data))
-        .catch(() => setCountries([]));
-      return;
-    }
-
-    if (region) {
-      fetchByRegion(region)
-        .then(data => subset = data)
-        .catch(() => subset = []);
-    }
-
-    if (language) {
-      subset = subset.filter(c =>
-        c.languages && Object.values(c.languages).includes(language)
-      );
-    }
-
-    setCountries(subset);
+    // define an async filter runner
+    const applyFilters = async () => {
+      try {
+        // 1) If there’s a search term, just search by name and bail
+        if (debouncedSearch) {
+          const data = await fetchByName(debouncedSearch);
+          setCountries(data);
+          return;
+        }
+  
+        // 2) Otherwise start from either "all" or the region-specific endpoint
+        let data = all;
+        if (region) {
+          data = await fetchByRegion(region);
+        }
+  
+        // 3) Then apply the language filter (still in-memory)
+        if (language) {
+          data = data.filter(c =>
+            c.languages &&
+            Object.values(c.languages).includes(language)
+          );
+        }
+  
+        // 4) Finally, update state once
+        setCountries(data);
+      } catch (err) {
+        // on any error, clear out the list
+        setCountries([]);
+      }
+    };
+  
+    applyFilters();
   }, [all, debouncedSearch, region, language]);
+  
 
   return (
     <div className="container mx-auto p-4">
