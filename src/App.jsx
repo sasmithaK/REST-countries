@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/App.css";
 
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
