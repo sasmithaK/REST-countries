@@ -63,15 +63,15 @@ npm run preview	# Preview production build locally
 
 ## 📁 Project Structure
 frontend/
-├── backend/ #user state management
-├── public/
-├── src/
-│ ├── api/ # API client
-│ ├── components/ # UI components
-│ ├── hooks/ # Custom React hooks
-│ ├── styles/ # CSS styles
-│ ├── tests/ # Unit & integration tests
-│ ├── App.jsx # App entry component
-│ └── main.jsx # Main entry file
-├── index.html
-└── package.json
+- ├── backend/ #user state management
+- ├── public/
+- ├── src/
+- │ ├── api/ # API client
+- │ ├── components/ # UI components
+- │ ├── hooks/ # Custom React hooks
+- │ ├── styles/ # CSS styles
+- │ ├── tests/ # Unit & integration tests
+- │ ├── App.jsx # App entry component
+- │ └── main.jsx # Main entry file
+- ├── index.html
+- └── package.json
