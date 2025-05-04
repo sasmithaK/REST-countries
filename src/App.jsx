@@ -1,67 +1,68 @@
-import React, { useState, useEffect } from "react";
-import { fetchAll, fetchByName, fetchByRegion } from "./api/restCountries";
-import 'bootstrap/dist/css/bootstrap.min.css'
+// src/App.jsx
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import useDebounce from "./hooks/useDebounce";
+import NavBar from "./components/NavBar";
+import Hero from "./components/Hero";
 import SearchBar from "./components/SearchBar";
 import Filters from "./components/Filters";
 import CountryList from "./components/CountryList";
+import CountryDetails from "./components/CountryDetails";
+import useCountries from "./hooks/useCountries";
+
+function Home({ search, setSearch, region, setRegion, language, setLanguage, countries }) {
+  return (
+    <main className="container bg-light bg-opacity-75 p-4 rounded shadow-sm">
+      <div className="row align-items-center mb-4">
+        <div className="col-md-6 mb-3 mb-md-0">
+          <SearchBar value={search} onChange={setSearch} />
+        </div>
+        <div className="col-md-6 d-flex justify-content-md-end">
+          <Filters
+            region={region}
+            onRegion={setRegion}
+            language={language}
+            onLanguage={setLanguage}
+          />
+        </div>
+      </div>
+      <CountryList countries={countries} />
+    </main>
+  );
+}
 
 export default function App() {
-  const [all, setAll] = useState([]);
-  const [countries, setCountries] = useState([]);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("");
   const [language, setLanguage] = useState("");
-  const debouncedSearch = useDebounce(search);
-
-  // initial load
-  useEffect(() => {
-    fetchAll().then(data => {
-      setAll(data);
-      setCountries(data);
-    });
-  }, []);
-
-  // filters & search
-  useEffect(() => {
-    let subset = all;
-
-    if (debouncedSearch) {
-      fetchByName(debouncedSearch)
-        .then(data => setCountries(data))
-        .catch(() => setCountries([]));
-      return;
-    }
-
-    if (region) {
-      fetchByRegion(region)
-        .then(data => subset = data)
-        .catch(() => subset = []);
-    }
-
-    if (language) {
-      subset = subset.filter(c =>
-        c.languages && Object.values(c.languages).includes(language)
-      );
-    }
-
-    setCountries(subset);
-  }, [all, debouncedSearch, region, language]);
+  const countries = useCountries(search, region, language);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">REST Countries Explorer</h1>
-      <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
-        <SearchBar value={search} onChange={setSearch} />
-        <Filters
-          region={region}
-          onRegion={setRegion}
-          language={language}
-          onLanguage={setLanguage}
+    <div style={{ position: "relative", zIndex: 1 }}>
+      <NavBar />
+      <Hero />
+
+      <Routes>
+        {/* Home/List view */}
+        <Route
+          path="/"
+          element={
+            <Home
+              search={search}
+              setSearch={setSearch}
+              region={region}
+              setRegion={setRegion}
+              language={language}
+              setLanguage={setLanguage}
+              countries={countries}
+            />
+          }
         />
-      </div>
-      <CountryList countries={countries} />
+
+        {/* Country details view */}
+        <Route path="/country/:code" element={<CountryDetails />} />
+      </Routes>
     </div>
   );
 }

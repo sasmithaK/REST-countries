@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CountryCard({ country }) {
-  const { flags, name, population, region, capital, languages } = country;
+  const { flags, name, population, region, capital, languages, cca3 } = country;
+
   return (
     <div className="card h-100 shadow-sm">
       <img
@@ -28,7 +30,11 @@ export default function CountryCard({ country }) {
           <i className="bi bi-translate me-1"></i>
           <strong>Languages:</strong> {languages ? Object.values(languages).join(", ") : "—"}
         </p>
-        <button className="btn btn-light border w-100">View Details</button>
+        <Link
+          to={`/country/${cca3}`}
+          className="btn btn-light border w-100">
+          View Details
+        </Link>
       </div>
     </div>
   );
