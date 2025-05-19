@@ -20,7 +20,7 @@ export default function CountryCard({ country }) {
 
   return (
     <div className="card country-card h-100 shadow-lg border-0 position-relative">
-      {/* Bookmark icon in top-right corner */}
+      {/* Bookmark icon */}
       <button
         onClick={onBookmarkClick}
         className="btn bookmark-btn position-absolute top-0 end-0 m-2"

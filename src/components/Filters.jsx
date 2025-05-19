@@ -19,7 +19,7 @@ export default function Filters({ region, onRegion, language, onLanguage }) {
 
   return (
     <div className="d-flex flex-row gap-3 mb-3">
-      {/* Region dropdown with blue gradient and chevron icon */}
+      {/* Region filter */}
       <div className={wrapperClass} style={{ minWidth: '150px' }}>
         <select
           value={region}
@@ -37,7 +37,7 @@ export default function Filters({ region, onRegion, language, onLanguage }) {
         <i className={iconClass}></i>
       </div>
 
-      {/* Language dropdown with blue gradient and chevron icon */}
+      {/* Language filter*/}
       <div className={wrapperClass} style={{ minWidth: '150px' }}>
         <select
           value={language}
