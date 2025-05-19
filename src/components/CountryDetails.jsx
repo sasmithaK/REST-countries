@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchByCode } from "../api/restCountries";
+import { useDispatch } from 'react-redux';
+import { addRecentlyViewed } from '../store/sessionSlice';
 
 export default function CountryDetails() {
   const { code } = useParams();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const lastPushedRef = useRef(null);
 
   useEffect(() => {
     fetchByCode(code)
@@ -13,6 +17,22 @@ export default function CountryDetails() {
       .catch(() => setCountry(null))
       .finally(() => setLoading(false));
   }, [code]);
+
+  useEffect(() => {
+  try {
+    console.log("country:", country, "lastPushedRef:", lastPushedRef.current);
+    if (
+      country &&
+      country.cca3 &&
+      country.cca3 !== lastPushedRef.current
+    ) {
+      dispatch(addRecentlyViewed(country));
+      lastPushedRef.current = country.cca3;
+    }
+  } catch (e) {
+    console.error("Error in recently viewed effect:", e);
+  }
+}, [country, dispatch]);
 
   if (loading) return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-gradient-primary">

@@ -1,14 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleBookmark } from '../store/sessionSlice';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '../styles/CountryCard.css';
 
 export default function CountryCard({ country }) {
   const { flags, name, population, region, capital, languages, cca3 } = country;
+  const dispatch = useDispatch();
+
+  const bookmarks = useSelector(state => state.session.bookmarks);
+  const isBookmarked = bookmarks.some(c => c.cca3 === cca3);
+
+  const onBookmarkClick = () => {
+    dispatch(toggleBookmark(country));
+  };
 
   return (
-    <div className="card country-card h-100 shadow-lg border-0">
+    <div className="card country-card h-100 shadow-lg border-0 position-relative">
+      {/* Bookmark icon in top-right corner */}
+      <button
+        onClick={onBookmarkClick}
+        className="btn bookmark-btn position-absolute top-0 end-0 m-2"
+        aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
+      >
+        <i className={`bi ${isBookmarked ? 'bi-bookmark-fill text-warning' : 'bi-bookmark text-secondary'}`}></i>
+      </button>
+
       <img
         src={flags.svg}
         alt={`${name.common} flag`}

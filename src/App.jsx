@@ -1,37 +1,16 @@
-// src/App.jsx
+// src/App.js
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.css";
 
+import RecentlyViewed from "./components/RecentlyViewed";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
-import SearchBar from "./components/SearchBar";
-import Filters from "./components/Filters";
-import CountryList from "./components/CountryList";
 import CountryDetails from "./components/CountryDetails";
 import useCountries from "./hooks/useCountries";
-
-function Home({ search, setSearch, region, setRegion, language, setLanguage, countries }) {
-  return (
-    <main className="container bg-light bg-opacity-75 p-4 rounded shadow-sm">
-      <div className="row align-items-center mb-4">
-        <div className="col-md-6 mb-3 mb-md-0">
-          <SearchBar value={search} onChange={setSearch} />
-        </div>
-        <div className="col-md-6 d-flex justify-content-md-end">
-          <Filters
-            region={region}
-            onRegion={setRegion}
-            language={language}
-            onLanguage={setLanguage}
-          />
-        </div>
-      </div>
-      <CountryList countries={countries} />
-    </main>
-  );
-}
+import Home from "./pages/Home";
+import Bookmark from './pages/Bookmarks';
 
 export default function App() {
   const [search, setSearch] = useState("");
@@ -43,9 +22,8 @@ export default function App() {
     <div style={{ position: "relative", zIndex: 1 }}>
       <NavBar />
       <Hero />
-
+      <RecentlyViewed />
       <Routes>
-        {/* Home/List view */}
         <Route
           path="/"
           element={
@@ -60,9 +38,8 @@ export default function App() {
             />
           }
         />
-
-        {/* Country details view */}
         <Route path="/country/:code" element={<CountryDetails />} />
+        <Route path="/bookmarks" element={<Bookmark />} />
       </Routes>
     </div>
   );
