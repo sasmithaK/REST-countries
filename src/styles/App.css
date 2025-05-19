@@ -30,3 +30,18 @@
     transform: translateY(-5px);
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
 }
+
+.navbar {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  z-index: 2;
+}
+
+/* push the hero content down below the navbar */
+.vh-90 {
+  padding-top: 4.5rem; /* adjust  (≈ nav height) so your hero’s text isn’t hidden under the bar */
+}

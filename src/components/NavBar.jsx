@@ -1,12 +1,11 @@
 import React from "react";
+import "../styles/NavBar.css";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-white shadow-sm">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#">
-          Countries Explorer
-        </a>
+        <a className="navbar-brand fw-bold text-white" href="/">Curiosity Voyage</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,19 +20,13 @@ export default function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
+              <a className="nav-link text-white fw-semibold hover-effect" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Countries
-              </a>
+              <a className="nav-link text-white fw-semibold hover-effect" href="/">Countries</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
+              <a className="nav-link text-white fw-semibold hover-effect" href="/bookmarks">Bookmarks</a>
             </li>
           </ul>
         </div>
