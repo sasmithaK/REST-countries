@@ -25,7 +25,7 @@ Take a tour around the world. This React application lets you browse, search, fi
 - **Front‐end**: React, React Router, React Hooks  
 - **Styling**: Bootstrap 5 + custom CSS  
 - **API client**: Fetch wrapper in `src/api/restCountries.js`  
-- **State management**: Local component state & custom hooks  
+- **State management**: Redux 
 - **Bundler**: Create React App  
 - **Testing**: Jest & React Testing Library  
 
