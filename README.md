@@ -1,8 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mNaxAqQD)
+# Curiosity Voyage 🌏 - Explore Countries
 
-# Curiosity Voyage 🌏 
-
-Talk a tour around the world. This is a React application that lets you browse, search, filter, and view details such as country flag, population, languages used, currencies, population, capital, boardaring countries and many more via the [REST Countries API](https://restcountries.com/).
+Take a tour around the world. This React application lets you browse, search, filter, and view details such as country flag, population, languages used, currencies, capital, bordering countries and many more via the [REST Countries API](https://restcountries.com/).
 
 --- 
 
@@ -14,7 +12,7 @@ Talk a tour around the world. This is a React application that lets you browse, 
 
 ## Features
 
-- **Browse** all countries with flags, names, regions, populations, capitals, languages and boardaring countries
+- **Browse** all countries with flags, names, regions, populations, capitals, languages and bordering countries
 - **Search** countries by name
 - **Filter** by region and by language  
 - **Detail view** for each country (including border‐country navigation)  
@@ -62,16 +60,21 @@ npm run preview	# Preview production build locally
 ```
 
 ## 📁 Project Structure
+```bash
 frontend/
-- ├── backend/ #user state management
-- ├── public/
-- ├── src/
-- │ ├── api/ # API client
-- │ ├── components/ # UI components
-- │ ├── hooks/ # Custom React hooks
-- │ ├── styles/ # CSS styles
-- │ ├── tests/ # Unit & integration tests
-- │ ├── App.jsx # App entry component
-- │ └── main.jsx # Main entry file
-- ├── index.html
-- └── package.json
+ ├── backend/ #user state management
+ ├── public/
+ ├── src/
+ │ ├── api/ # API client
+ │ ├── assests/ # Media files
+ │ ├── components/ # UI components
+ │ ├── hooks/ # Custom React hooks
+ │ ├── styles/ # CSS styles
+ │ ├── pages/ # Web pages
+ │ ├── store/ # Redux session management
+ │ ├── tests/ # Unit & integration tests
+ │ ├── App.jsx # App entry component
+ │ └── main.jsx # Main entry file
+ ├── index.html
+ └── package.json
+```
